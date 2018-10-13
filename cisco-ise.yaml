@@ -91,7 +91,6 @@ components:
       lbmethod: LEASTCONNECTION
       persistencetype: RULE
       rule: str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "8" + ")" + "+" + str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "31" + ")"
-      cltTimeout: 120
     components: 
       - 
         name: auth-servicegroup-comp
@@ -139,7 +138,6 @@ components:
       lbmethod: LEASTCONNECTION
       persistencetype: RULE
       rule:  str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "8" + ")" + "+" + str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "31" + ")"
-      cltTimeout: 120
     components: 
       - 
         name: acct-servicegroup-comp
