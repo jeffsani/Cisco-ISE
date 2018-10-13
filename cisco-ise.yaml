@@ -90,7 +90,7 @@ components:
       port: $parameters.ise-radius-auth.auth-lbvserver-port
       lbmethod: LEASTCONNECTION
       persistencetype: RULE
-      rule: "CLIENT.UDP.RADIUS.ATTR_TYPE(8)+CLIENT.UDP.RADIUS.ATTR_TYPE(31)"
+      rule: str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "8" + ")" + "+" + str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "31" + ")"
       cltTimeout: 120
       usip: 
     components: 
@@ -135,7 +135,7 @@ components:
       port: $parameters.ise-radius-acct.acct-lbvserver-port
       lbmethod: LEASTCONNECTION
       persistencetype: RULE
-      rule: "CLIENT.UDP.RADIUS.ATTR_TYPE(8)+CLIENT.UDP.RADIUS.ATTR_TYPE(31)"
+      rule:  str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "8" + ")" + "+" + str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "31" + ")"
       cltTimeout: 120
     components: 
       - 
