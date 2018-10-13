@@ -92,14 +92,17 @@ components:
       persistencetype: RULE
       rule: str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "8" + ")" + "+" + str("CLIENT.UDP.RADIUS.ATTR_TYPE") + "(" + "31" + ")"
       cltTimeout: 120
-      usip: 
     components: 
       - 
         name: auth-servicegroup-comp
         type: ns::servicegroup
         properties: 
-          servicegroupname: str("svcg_") + $parameters.appname
+          servicegroupname: str("svcg_radius_auth_") + $parameters.appname
           servicetype: RADIUS
+          usip: YES
+          useproxyport: YES
+          cltTimeout: 120
+          svrTimeout: 120
         components: 
           - 
             name: auth-lbvserver-svcg-binding
@@ -142,7 +145,7 @@ components:
         name: acct-servicegroup-comp
         type: ns::servicegroup 
         properties: 
-          servicegroupname: str("svcg_") + $parameters.appname
+          servicegroupname: str("svcg_radius_acct_") + $parameters.appname
           servicetype: RADIUS
           usip: YES
           useproxyport: YES
