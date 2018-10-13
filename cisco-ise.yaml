@@ -36,24 +36,24 @@ parameters:
     type: object
     required: true
     parameters:
-  - 
-    name: auth-lbvserver-ip
-    label: "Public IP"
-    description: "ISE Auth Public IP"
-    type: ipaddress
-    required: true
-  -  
-    name: auth-lbvserver-port
-    label: "ISE Auth Public Port"
-    description: "Cisco ISE Radius Authentication Public IP"
-    type: number
-    required: true
-  - 
-    name: ise-auth-servers
-    label: Radius Auth Server(s)
-    description: ISE Radius Accounting Server(s)
-    type: cmtypes::server-ip-port-params[]
-    required: true
+     - 
+       name: auth-lbvserver-ip
+       label: "Public IP"
+       description: "ISE Auth Public IP"
+       type: ipaddress
+       required: true
+     -  
+       name: auth-lbvserver-port
+       label: "ISE Auth Public Port"
+       description: "Cisco ISE Radius Authentication Public IP"
+       type: number
+       required: true
+     - 
+       name: ise-auth-servers
+       label: Radius Auth Server(s)
+       description: ISE Radius Accounting Server(s)
+       type: cmtypes::server-ip-port-params[]
+       required: true
   - 
     name: ise-radius-acct
     label: Enable ISA Radius Accounting
@@ -62,23 +62,23 @@ parameters:
     type: object
     parameters:
      - 
-      name: acct-lbvserver-ip
-      label: "Public IP"
-      description: "ISE LB Public IP"
-      type: ipaddress
-      required: true
+       name: acct-lbvserver-ip
+       label: "Public IP"
+       description: "ISE LB Public IP"
+       type: ipaddress
+       required: true
      - 
-      name: acct-lbvserver-port
-      label: "ISE Acct Public Port"
-      description: "Cisco ISE Radius Acconting Public Port"
-      type: number
-      required: true    
+       name: acct-lbvserver-port
+       label: "ISE Acct Public Port"
+       description: "Cisco ISE Radius Acconting Public Port"
+       type: number
+       required: true    
      -
-      name: acct-servers
-      label: Radius Acct Server(s)
-      description: ISE Radius Accounting Server(s)
-      type: cmtypes::server-ip-port-params[]
-      required: true
+       name: acct-servers
+       label: Radius Acct Server(s)
+       description: ISE Radius Accounting Server(s)
+       type: cmtypes::server-ip-port-params[]
+       required: true
 components:
   - 
     name: ise-auth-lbvserver-comp
