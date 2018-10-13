@@ -21,58 +21,163 @@ import-stylebooks:
 parameters:
   -
     name: appname
-    label: "LB VServer Name"
-    description: "Cisco ISE LB VServer Name"
+    label: "ISE Applicaiton Name"
+    description: "Pre-fix for created ISE ADC entities"
     type: string
     key: true
     gui:
       updatable: true
     required: true
-  -
-    name: cs-virtual-ip
-    label: "Radius VServer IP"
-    description: "Cisco ISE Radius Authentication Public IP"
+  - 
+    name: ise-radius-auth
+    label: ISE Radius Authentication Server(s)
+    description: |
+     Creates an LB Vserver object for Load Balancing Radius Authentication Servers
+    type: object
+    required: true
+    parameters:
+  - 
+    name: auth-lbvserver-ip
+    label: "Public IP"
+    description: "ISE Auth Public IP"
     type: ipaddress
     required: true
-    
-  - name: ica-latency-profile
-    label: Create ICA Latency Profile
-    description: |
-     Create an ICA Latency Profile - this is optional but recommended for more accurate analytics in Citrix ADM.  
-     For more information refer to the <a href="https://docs.citrix.com/en-us/netscaler/12/load-balancing/load-balancing-builtin-monitors/monitor-citrix-sf-services.html" |
-     target="_blank">documentation</a>
-    type: object
-    parameters:
-     -
-      name: auth-servers
-      label: Radius Auth Server(s)
-      description: ISE Radius Authentication Server(s)
-      type: cmtypes::server-ip-port-params[]
-      required: true
-  -
-  -
-    name: acct-servers
-    label: Radius Acct Server(s)
+  -  
+    name: auth-lbvserver-port
+    label: "ISE Auth Public Port"
+    description: "Cisco ISE Radius Authentication Public IP"
+    type: number
+    required: true
+  - 
+    name: ise-auth-servers
+    label: Radius Auth Server(s)
     description: ISE Radius Accounting Server(s)
     type: cmtypes::server-ip-port-params[]
     required: true
-  -
+  - 
+    name: ise-radius-acct
+    label: Enable ISA Radius Accounting
+    description: |
+     Creates an LB Vserver object for Load Balancing Radius Servers
+    type: object
+    parameters:
+     - 
+      name: acct-lbvserver-ip
+      label: "Public IP"
+      description: "ISE LB Public IP"
+      type: ipaddress
+      required: true
+     - 
+      name: acct-lbvserver-port
+      label: "ISE Acct Public Port"
+      description: "Cisco ISE Radius Acconting Public Port"
+      type: number
+      required: true    
+     -
+      name: acct-servers
+      label: Radius Acct Server(s)
+      description: ISE Radius Accounting Server(s)
+       type: cmtypes::server-ip-port-params[]
+      required: true
+components:
+  - 
+    name: ise-auth-lbvserver-comp
+    type: ns::lbvserver
+    properties: 
+      name: str("lbv_radius_auth_") + $parameters.appname
+      servicetype: RADIUS
+      ipv46: $parameters.ise-radius-auth.auth-lbvserver-ip
+      port: $parameters.ise-radius-auth.auth-lbvserver-port
+      lbmethod: LEASTCONNECTION
+      persistencetype: RULE
+      rule: "CLIENT.UDP.RADIUS.ATTR_TYPE(8)+CLIENT.UDP.RADIUS.ATTR_TYPE(31)"
+      cltTimeout: 120
+      usip: 
+    components: 
+      - 
+        name: auth-servicegroup-comp
+        type: ns::servicegroup
+         properties: 
+          servicegroupname: str("svcg_") + $parameters.appname
+          servicetype: RADIUS
+        components: 
+          - 
+            name: auth-lbvserver-svcg-binding
+            type: ns::lbvserver_servicegroup_binding
+            properties: 
+              name: $parent.parent.properties.name
+              servicegroupname: $parent.properties.servicegroupname
+          -
+            name: auth-server-members
+            type: ns::server 
+            repeat: $parameters.storefront-settings.sf-servers
+            repeat-item: server
+            repeat-condition: $server.add-server
+            properties:
+              name: str($server.ip)
+              ipaddress: $server.ip
+          - 
+            name: auth-svcg-ip-members
+            type: ns::servicegroup_servicegroupmember_binding
+            repeat: $parameters.storefront-settings.sf-servers
+            repeat-item: server
+            properties: 
+              servicegroupname: $parent.properties.servicegroupname
+              ip: $server.ip
+              port: $server.port
+   - 
+    name: ise-acct-lbvserver-comp
+    type: ns::lbvserver
+    properties: 
+      name: str("lbv_radius_acct_") + $parameters.appname
+      servicetype: RADIUS
+      ipv46: $parameters.ise-radius-acct.acct-lbvserver-ip
+      port: $parameters.ise-radius-acct.acct-lbvserver-port
+      lbmethod: LEASTCONNECTION
+      persistencetype: RULE
+      rule: "CLIENT.UDP.RADIUS.ATTR_TYPE(8)+CLIENT.UDP.RADIUS.ATTR_TYPE(31)"
+      cltTimeout: 120
+    components: 
+      - 
+        name: acct-servicegroup-comp
+        type: ns::servicegroup 
+        properties: 
+          servicegroupname: str("svcg_") + $parameters.appname
+          servicetype: RADIUS
+          usip: YES
+          useproxyport: YES
+          cltTimeout: 120
+          svrTimeout: 120
+          components: 
+           - 
+            name: acct-lbvserver-svcg-binding
+            type: ns::lbvserver_servicegroup_binding
+            properties: 
+              name: $parent.parent.properties.name
+              servicegroupname: $parent.properties.servicegroupname
+          -
+            name: acct-server-members
+            type: ns::server 
+            repeat: $parameters.storefront-settings.sf-servers
+            repeat-item: server
+            repeat-condition: $server.add-server
+            properties:
+              name: str($server.ip)
+              ipaddress: $server.ip
+          - 
+            name: acct-svcg-ip-members
+            type: ns::servicegroup_servicegroupmember_binding
+            repeat: $parameters.storefront-settings.sf-servers
+            repeat-item: server
+            properties: 
+              servicegroupname: $parent.properties.servicegroupname
+              ip: $server.ip
+              port: $server.port
 
-add server ISE-Server-1 xxx.xxx.xxx.xxx
-add server ISE-Server-2 xxx.xxx.xxx.xxx
- 
-add serviceGroup radius-auth RADIUS -maxClient 0 -maxReq 0 -cip DISABLED -usip YES -useproxyport YES -cltTimeout 120 -svrTimeout 120 -CKA NO -TCPB NO -CMP NO
-add serviceGroup radius-acct RADIUS -maxClient 0 -maxReq 0 -cip DISABLED -usip YES -useproxyport YES -cltTimeout 120 -svrTimeout 120 -CKA NO -TCPB NO -CMP NO
- 
-bind serviceGroup radius-auth ISE-Server-1 1812
-bind serviceGroup radius-auth ISE-Server-2 1812
-bind serviceGroup radius-acct ISE-Server-1 1813
-bind serviceGroup radius-acct ISE-Server-2 1813
- 
-add policy expression FramedIP_CallingStationID "CLIENT.UDP.RADIUS.ATTR_TYPE(8)+CLIENT.UDP.RADIUS.ATTR_TYPE(31)"
- 
-add lb vserver radius-auth RADIUS xxx.xxx.xxx.xxx 1812 -rule FramedIP_CallingStationID -cltTimeout 120
-add lb vserver radius-acct RADIUS xxx.xxx.xxx.xxx 1813 -rule FramedIP_CallingStationID -cltTimeout 120
- 
-bind lb vserver radius-auth radius-auth
-bind lb vserver radius-acct radius-acct
+ output:
+   -
+    name: ise-auth-lbvserver-comp
+    value: $components.ise-auth-lbvserver-comp
+  -
+    name: ise-acct-lbvserver-comp
+    value: $components.ise-acct-lbvserver-comp
