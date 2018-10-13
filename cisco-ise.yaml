@@ -175,7 +175,7 @@ components:
               port: $server.port
 
 output:
-   -
+  -
     name: ise-auth-lbvserver-comp
     value: $components.ise-auth-lbvserver-comp
   -
