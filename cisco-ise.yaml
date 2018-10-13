@@ -1,0 +1,78 @@
+---
+name: cisco-ise
+namespace: com.citrix.adc.stylebooks
+version: "1.0"
+display-name: "Cisco ISE"
+description: "This stylebook deploys an LB VServer on Citrix ADC with recommended best practices"
+schema-version: "1.0"
+import-stylebooks: 
+  -
+    namespace: netscaler.nitro.config
+    prefix: ns
+    version: "11.1"
+  -
+    namespace: com.citrix.adc.commontypes
+    prefix: cmtypes
+    version: "1.0"
+  -
+    namespace: com.citrix.adc.stylebooks
+    prefix: stlb
+    version: "1.0"
+parameters:
+  -
+    name: appname
+    label: "LB VServer Name"
+    description: "Cisco ISE LB VServer Name"
+    type: string
+    key: true
+    gui:
+      updatable: true
+    required: true
+  -
+    name: cs-virtual-ip
+    label: "Radius VServer IP"
+    description: "Cisco ISE Radius Authentication Public IP"
+    type: ipaddress
+    required: true
+    
+  - name: ica-latency-profile
+    label: Create ICA Latency Profile
+    description: |
+     Create an ICA Latency Profile - this is optional but recommended for more accurate analytics in Citrix ADM.  
+     For more information refer to the <a href="https://docs.citrix.com/en-us/netscaler/12/load-balancing/load-balancing-builtin-monitors/monitor-citrix-sf-services.html" |
+     target="_blank">documentation</a>
+    type: object
+    parameters:
+     -
+      name: auth-servers
+      label: Radius Auth Server(s)
+      description: ISE Radius Authentication Server(s)
+      type: cmtypes::server-ip-port-params[]
+      required: true
+  -
+  -
+    name: acct-servers
+    label: Radius Acct Server(s)
+    description: ISE Radius Accounting Server(s)
+    type: cmtypes::server-ip-port-params[]
+    required: true
+  -
+
+add server ISE-Server-1 xxx.xxx.xxx.xxx
+add server ISE-Server-2 xxx.xxx.xxx.xxx
+ 
+add serviceGroup radius-auth RADIUS -maxClient 0 -maxReq 0 -cip DISABLED -usip YES -useproxyport YES -cltTimeout 120 -svrTimeout 120 -CKA NO -TCPB NO -CMP NO
+add serviceGroup radius-acct RADIUS -maxClient 0 -maxReq 0 -cip DISABLED -usip YES -useproxyport YES -cltTimeout 120 -svrTimeout 120 -CKA NO -TCPB NO -CMP NO
+ 
+bind serviceGroup radius-auth ISE-Server-1 1812
+bind serviceGroup radius-auth ISE-Server-2 1812
+bind serviceGroup radius-acct ISE-Server-1 1813
+bind serviceGroup radius-acct ISE-Server-2 1813
+ 
+add policy expression FramedIP_CallingStationID "CLIENT.UDP.RADIUS.ATTR_TYPE(8)+CLIENT.UDP.RADIUS.ATTR_TYPE(31)"
+ 
+add lb vserver radius-auth RADIUS xxx.xxx.xxx.xxx 1812 -rule FramedIP_CallingStationID -cltTimeout 120
+add lb vserver radius-acct RADIUS xxx.xxx.xxx.xxx 1813 -rule FramedIP_CallingStationID -cltTimeout 120
+ 
+bind lb vserver radius-auth radius-auth
+bind lb vserver radius-acct radius-acct
