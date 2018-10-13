@@ -77,7 +77,7 @@ parameters:
       name: acct-servers
       label: Radius Acct Server(s)
       description: ISE Radius Accounting Server(s)
-       type: cmtypes::server-ip-port-params[]
+      type: cmtypes::server-ip-port-params[]
       required: true
 components:
   - 
@@ -97,7 +97,7 @@ components:
       - 
         name: auth-servicegroup-comp
         type: ns::servicegroup
-         properties: 
+        properties: 
           servicegroupname: str("svcg_") + $parameters.appname
           servicetype: RADIUS
         components: 
@@ -125,7 +125,7 @@ components:
               servicegroupname: $parent.properties.servicegroupname
               ip: $server.ip
               port: $server.port
-   - 
+  - 
     name: ise-acct-lbvserver-comp
     type: ns::lbvserver
     properties: 
@@ -155,7 +155,7 @@ components:
             properties: 
               name: $parent.parent.properties.name
               servicegroupname: $parent.properties.servicegroupname
-          -
+           -
             name: acct-server-members
             type: ns::server 
             repeat: $parameters.storefront-settings.sf-servers
@@ -164,7 +164,7 @@ components:
             properties:
               name: str($server.ip)
               ipaddress: $server.ip
-          - 
+           - 
             name: acct-svcg-ip-members
             type: ns::servicegroup_servicegroupmember_binding
             repeat: $parameters.storefront-settings.sf-servers
@@ -174,7 +174,7 @@ components:
               ip: $server.ip
               port: $server.port
 
- output:
+output:
    -
     name: ise-auth-lbvserver-comp
     value: $components.ise-auth-lbvserver-comp
