@@ -49,7 +49,7 @@ parameters:
        type: number
        required: true
      - 
-       name: ise-auth-servers
+       name: auth-servers
        label: Radius Auth Server(s)
        description: ISE Radius Accounting Server(s)
        type: cmtypes::server-ip-port-params[]
@@ -112,7 +112,7 @@ components:
           -
             name: auth-server-members
             type: ns::server 
-            repeat: $parameters.storefront-settings.sf-servers
+            repeat: $parameters.ise-radius-auth.auth-servers
             repeat-item: server
             repeat-condition: $server.add-server
             properties:
@@ -121,7 +121,7 @@ components:
           - 
             name: auth-svcg-ip-members
             type: ns::servicegroup_servicegroupmember_binding
-            repeat: $parameters.storefront-settings.sf-servers
+            repeat: $parameters.ise-radius-auth.auth-servers
             repeat-item: server
             properties: 
               servicegroupname: $parent.properties.servicegroupname
@@ -130,6 +130,7 @@ components:
   - 
     name: ise-acct-lbvserver-comp
     type: ns::lbvserver
+    condition: $parameters.ise-radius-acct
     properties: 
       name: str("lbv_radius_acct_") + $parameters.appname
       servicetype: RADIUS
@@ -159,7 +160,7 @@ components:
            -
             name: acct-server-members
             type: ns::server 
-            repeat: $parameters.storefront-settings.sf-servers
+            repeat: $parameters.ise-radius-acct.acct-servers
             repeat-item: server
             repeat-condition: $server.add-server
             properties:
@@ -168,7 +169,7 @@ components:
            - 
             name: acct-svcg-ip-members
             type: ns::servicegroup_servicegroupmember_binding
-            repeat: $parameters.storefront-settings.sf-servers
+            repeat: $parameters.ise-radius-acct.acct-servers
             repeat-item: server
             properties: 
               servicegroupname: $parent.properties.servicegroupname
