@@ -100,8 +100,8 @@ components:
           servicetype: RADIUS
           usip: "YES"
           useproxyport: "YES"
-          cltTimeout: 120
-          svrTimeout: 120
+          clttimeout: 120
+          svrtimeout: 120
         components: 
           - 
             name: auth-lbvserver-svcg-binding
@@ -147,8 +147,8 @@ components:
           servicetype: RADIUS
           usip: "YES"
           useproxyport: "YES"
-          cltTimeout: 120
-          svrTimeout: 120
+          clttimeout: 120
+          svrtimeout: 120
           components: 
            - 
             name: acct-lbvserver-svcg-binding
