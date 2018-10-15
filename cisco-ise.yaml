@@ -22,7 +22,9 @@ parameters:
   -
     name: appname
     label: ISE Applicaiton Name
-    description: Pre-fix for created ISE ADC entities
+    description: |
+     <h1>Cisco ISE LB</h1></br>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers in accord with best practices
+     Pre-fix for created ISE ADC entities
     type: string
     key: true
     gui:
@@ -32,8 +34,7 @@ parameters:
     name: ise-radius-auth
     label: ISE Radius Authentication Server(s)
     description: |
-     Creates an LB Vserver object for Load Balancing ISE Radius Authentication Servers
-     with recommended settings and persistence
+     Creates an LB Vserver object for Load Balancing ISE Radius Authentication Servers with recommended settings and persistence
     type: object
     required: true
     parameters:
@@ -59,8 +60,7 @@ parameters:
     name: ise-radius-acct
     label: ISE Radius Accounting (Click to Enable)
     description: |
-     Creates an LB Vserver object for Load Balancing ISE Radius Accounting Servers
-     with recommended settings and persistence
+     Creates an LB Vserver object for Load Balancing ISE Radius Accounting Servers with recommended settings and persistence
     type: object
     parameters:
      - 
