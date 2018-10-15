@@ -150,31 +150,31 @@ components:
           useproxyport: "YES"
           clttimeout: 120
           svrtimeout: 120
-       components: 
-         - 
-          name: acct-lbvserver-svcg-binding
-          type: ns::lbvserver_servicegroup_binding
-          properties: 
-            name: $parent.parent.properties.name
-            servicegroupname: $parent.properties.servicegroupname
-         -
-          name: acct-server-members
-          type: ns::server 
-          repeat: $parameters.ise-radius-acct.acct-servers
-          repeat-item: server
-          repeat-condition: $server.add-server
-          properties:
-            name: str($server.ip)
-            ipaddress: $server.ip
-         - 
-          name: acct-svcg-ip-members
-          type: ns::servicegroup_servicegroupmember_binding
-          repeat: $parameters.ise-radius-acct.acct-servers
-          repeat-item: server
-          properties: 
-            servicegroupname: $parent.properties.servicegroupname
-            ip: $server.ip
-            port: $server.port
+        components: 
+          - 
+           name: acct-lbvserver-svcg-binding
+           type: ns::lbvserver_servicegroup_binding
+           properties: 
+             name: $parent.parent.properties.name
+             servicegroupname: $parent.properties.servicegroupname
+          -
+           name: acct-server-members
+           type: ns::server 
+           repeat: $parameters.ise-radius-acct.acct-servers
+           repeat-item: server
+           repeat-condition: $server.add-server
+           properties:
+             name: str($server.ip)
+             ipaddress: $server.ip
+          - 
+           name: acct-svcg-ip-members
+           type: ns::servicegroup_servicegroupmember_binding
+           repeat: $parameters.ise-radius-acct.acct-servers
+           repeat-item: server
+           properties: 
+             servicegroupname: $parent.properties.servicegroupname
+             ip: $server.ip
+             port: $server.port
 outputs:
   -
     name: ise-auth-lbvserver-comp
