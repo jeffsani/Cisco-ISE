@@ -21,8 +21,8 @@ import-stylebooks:
 parameters:
   -
     name: appname
-    label: "ISE Applicaiton Name"
-    description: "Pre-fix for created ISE ADC entities"
+    label: ISE Applicaiton Name
+    description: Pre-fix for created ISE ADC entities
     type: string
     key: true
     gui:
@@ -32,20 +32,21 @@ parameters:
     name: ise-radius-auth
     label: ISE Radius Authentication Server(s)
     description: |
-     Creates an LB Vserver object for Load Balancing Radius Authentication Servers
+     Creates an LB Vserver object for Load Balancing ISE Radius Authentication Servers
+     with recommended settings and persistence
     type: object
     required: true
     parameters:
      - 
        name: auth-lbvserver-ip
-       label: "Public IP"
+       label: Public IP
        description: "ISE Auth Public IP"
        type: ipaddress
        required: true
      -  
        name: auth-lbvserver-port
-       label: "ISE Auth Public Port"
-       description: "Cisco ISE Radius Authentication Public IP"
+       label: ISE Auth Public Port
+       description: Cisco ISE Radius Authentication Public IP
        type: number
        required: true
      - 
@@ -56,21 +57,22 @@ parameters:
        required: true
   - 
     name: ise-radius-acct
-    label: Enable ISA Radius Accounting
+    label: ISE Radius Accounting (Click to Enable)
     description: |
-     Creates an LB Vserver object for Load Balancing Radius Servers
+     Creates an LB Vserver object for Load Balancing ISE Radius Accounting Servers
+     with recommended settings and persistence
     type: object
     parameters:
      - 
        name: acct-lbvserver-ip
        label: "Public IP"
-       description: "ISE LB Public IP"
+       description: ISE LB Public IP
        type: ipaddress
        required: true
      - 
        name: acct-lbvserver-port
-       label: "ISE Acct Public Port"
-       description: "Cisco ISE Radius Acconting Public Port"
+       label: ISE Acct Public Port
+       description: Cisco ISE Radius Acconting Public Port
        type: number
        required: true    
      -
