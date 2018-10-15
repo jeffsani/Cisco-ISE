@@ -20,16 +20,23 @@ import-stylebooks:
     version: "1.0"
 parameters:
   -
-    name: appname
-    label: ISE Applicaiton Name
+    name: ise-radius-sb
+    label: Cisco ISE Radius LB
     description: |
      <h1>Cisco ISE LB</h1></br>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers in accord with best practices
      Pre-fix for created ISE ADC entities
-    type: string
-    key: true
-    gui:
-      updatable: true
+    type: object
     required: true
+    parameters:
+     - 
+       name: appname
+       label: ISE Applicaiton Name
+       description: Prefix for created entities
+       type: string
+       key: true
+       gui:
+        updatable: true
+       required: true
   - 
     name: ise-radius-auth
     label: ISE Radius Authentication Server(s)
@@ -86,7 +93,7 @@ components:
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
     properties: 
-      name: str("lbv_radius_auth_") + $parameters.appname
+      name: str("lbv_radius_auth_") + $parameters.ise-radius-sb.appname
       servicetype: RADIUS
       ipv46: $parameters.ise-radius-auth.auth-lbvserver-ip
       port: $parameters.ise-radius-auth.auth-lbvserver-port
@@ -98,7 +105,7 @@ components:
         name: auth-servicegroup-comp
         type: ns::servicegroup
         properties: 
-          servicegroupname: str("svcg_radius_auth_") + $parameters.appname
+          servicegroupname: str("svcg_radius_auth_") + $parameters.ise-radius-sb.appname
           servicetype: RADIUS
           usip: "YES"
           useproxyport: "YES"
@@ -134,7 +141,7 @@ components:
     type: ns::lbvserver
     condition: $parameters.ise-radius-acct
     properties: 
-      name: str("lbv_radius_acct_") + $parameters.appname
+      name: str("lbv_radius_acct_") + $parameters.ise-radius-sb.appname
       servicetype: RADIUS
       ipv46: $parameters.ise-radius-acct.acct-lbvserver-ip
       port: $parameters.ise-radius-acct.acct-lbvserver-port
@@ -146,7 +153,7 @@ components:
         name: acct-servicegroup-comp
         type: ns::servicegroup 
         properties: 
-          servicegroupname: str("svcg_radius_acct_") + $parameters.appname
+          servicegroupname: str("svcg_radius_acct_") + $parameters.ise-radius-sb.appname
           servicetype: RADIUS
           usip: "YES"
           useproxyport: "YES"
