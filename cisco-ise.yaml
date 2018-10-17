@@ -64,11 +64,53 @@ parameters:
        description: ISE Radius Authentication Server(s)
        type: cmtypes::server-ip-port-radius-auth-params[]
        required: true
-  - 
+  -     
+    name: ise-radius-monitor
+    label: Configure Radius Authentication Monitor (Click to Enable)
+    description: |
+     Creates an USER Monitor LB Monitor for ISE Radius authentication servers
+    type: object
+    parameters:  
+     -
+       name: auth-lbmonitor-interval
+       label: Monitor Interval
+       description: Interval in seconds for how often you want the monitor to fire
+       type: integer
+       default: 10
+       required: true
+     -
+       name: auth-lbmonitor-username
+       label: Radius Username
+       description: Service account name to use for the radius monitor
+       type: string
+       required: true
+     -
+       name: auth-lbmonitor-password
+       label: Radius Password
+       description: Service account password to use for the radius monitor
+       type: password
+       required: true
+     -
+       name: auth-lbmonitor-radkey
+       label: Radius Secret
+       description: Radius Key
+       type: password
+       required: true
+     - 
+       name: auth-lbmonitor-nasid
+       label: NAS ID
+       description: Network Access Server (NAS) Identifier to send in the Access-Request packet
+       type: string
+     - 
+       name: auth-lbmonitor-nasip
+       label: NAS ID
+       description: Network Access Server (NAS) IP address to use as the source IP address when monitoring a RADIUS server
+       type: ipaddress         
+  -   
     name: ise-radius-acct
     label: ISE Radius Accounting (Click to Enable)
     description: |
-     Creates an LB Vserver object for Load Balancing ISE Radius Accounting Servers with recommended settings and persistence
+     Creates an LB Vserver object for Load Balancing ISE radius accounting servers with recommended settings and persistence
     type: object
     parameters:
      - 
@@ -91,6 +133,20 @@ parameters:
        type: cmtypes::server-ip-port-radius-acct-params[]
        required: true
 components:
+  - 
+    name: ise-auth-monitor-comp
+    type: ns::lbmonitor
+    description: This component creates an lb monitor for the configured Radius service group 
+    condition: $parameters.ise-radius-monitor
+    properties:
+      monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
+      type: "RADIUS"
+      username: $paramters.ise-radius-monitor.auth-lbmonitor-username
+      password: $paramters.ise-radius-monitor.auth-lbmonitor-password
+      radkey: $paramters.ise-radius-monitor.auth-lbmonitor-radkey
+      radnasid: $paramters.ise-radius-monitor.auth-lbmonitor-nasid
+      radnasip: $paramters.ise-radius-monitor.auth-lbmonitor-nasip
+      interval: $paramters.ise-radius-monitor.auth-lbmonitor-interval   
   - 
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
@@ -138,6 +194,13 @@ components:
               servicegroupname: $parent.properties.servicegroupname
               ip: $server.ip
               port: $server.port
+         - 
+            name: ise-lbmonitor-binding-comp
+            type: ns::servicegroup_lbmonitor_binding
+            condition: $parameters.ise-radius-monitor
+            properties:
+              servicegroupname: $parent.parent.properties.name
+              monitor_name: $components.ise-auth-monitor-comp.properties.monitorname
   - 
     name: ise-acct-lbvserver-comp
     type: ns::lbvserver
