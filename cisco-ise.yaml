@@ -86,7 +86,7 @@ parameters:
        name: acct-servers
        label: Radius Acct Server(s)
        description: ISE Radius Accounting Server(s)
-       type: cmtypes::server-ip-port-params[]
+       type: cmtypes::server-ip-port-radius-auth-params[]
        required: true
 components:
   - 
