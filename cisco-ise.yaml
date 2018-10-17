@@ -65,7 +65,7 @@ parameters:
        type: cmtypes::server-ip-port-radius-auth-params[]
        required: true
   -     
-    name: ise-radius-monitor
+    name: ise-radius-auth-monitor
     label: Configure Radius Authentication Monitor (Click to Enable)
     description: |
      Creates an USER Monitor LB Monitor for ISE Radius authentication servers
@@ -141,14 +141,33 @@ components:
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
       type: "RADIUS"
-      username: $paramters.ise-radius-monitor.auth-lbmonitor-username
-      password: $paramters.ise-radius-monitor.auth-lbmonitor-password
-      radkey: $paramters.ise-radius-monitor.auth-lbmonitor-radkey
-      radnasid: $paramters.ise-radius-monitor.auth-lbmonitor-nasid
-      radnasip: $paramters.ise-radius-monitor.auth-lbmonitor-nasip
-      interval: $paramters.ise-radius-monitor.auth-lbmonitor-interval
+      interval: $paramters.ise-radius-auth-monitor.auth-lbmonitor-interval
+      username: $paramters.ise-radius-auth-monitor.auth-lbmonitor-username
+      password: $paramters.ise-radius-auth-monitor.auth-lbmonitor-password
+      radkey: $paramters.ise-radius-auth-monitor.auth-lbmonitor-radkey
+      radnasid: $paramters.ise-radius-auth-monitor.auth-lbmonitor-nasid
+      radnasip: $paramters.ise-radius-auth-monitor.auth-lbmonitor-nasip
       respcode: 2      
   - 
+    name: ise-acct-monitor-comp
+    type: ns::lbmonitor
+    description: This component creates an lb monitor for the configured Radius service group 
+    condition: $parameters.ise-radius-acct-monitor
+    properties:
+      monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
+      type: "RADIUS"
+      interval: $paramters.ise-radius-acct-monitor.auth-lbmonitor-interval
+      username: $paramters.ise-radius-acct-monitor.auth-lbmonitor-username
+      password: $paramters.ise-radius-acct-monitor.auth-lbmonitor-password
+      radkey: $paramters.ise-radius-acct-monitor.auth-lbmonitor-radkey
+      radnasip: $paramters.ise-radius-acct-monitor.auth-lbmonitor-nasip
+
+      radaccounttype: 1
+      radframedip: $paramters.ise-radius-auth.auth-lbvserver-ip
+      radaccountsession: 
+      radmsisdn: 
+            
+  -   
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
     properties: 
