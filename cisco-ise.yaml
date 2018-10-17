@@ -195,12 +195,12 @@ components:
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
       type: "RADIUS"
-      interval: $paramters.ise-radius-auth-monitor.auth-lbmonitor-interval
-      username: $paramters.ise-radius-auth-monitor.auth-lbmonitor-username
-      password: $paramters.ise-radius-auth-monitor.auth-lbmonitor-password
-      radkey: $paramters.ise-radius-auth-monitor.auth-lbmonitor-radkey
-      radnasid: $paramters.ise-radius-auth-monitor.auth-lbmonitor-nasid
-      radnasip: $paramters.ise-radius-auth-monitor.auth-lbmonitor-nasip
+      interval: $parameters.ise-radius-auth-monitor.auth-lbmonitor-interval
+      username: $parameters.ise-radius-auth-monitor.auth-lbmonitor-username
+      password: $parameters.ise-radius-auth-monitor.auth-lbmonitor-password
+      radkey: $parameters.ise-radius-auth-monitor.auth-lbmonitor-radkey
+      radnasid: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasid
+      radnasip: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasip
       respcode: 2      
   - 
     name: ise-acct-monitor-comp
@@ -210,15 +210,15 @@ components:
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
       type: "RADIUS"
-      interval: $paramters.ise-radius-acct-monitor.auth-lbmonitor-interval
-      username: $paramters.ise-radius-acct-monitor.auth-lbmonitor-username
-      password: $paramters.ise-radius-acct-monitor.auth-lbmonitor-password
-      radkey: $paramters.ise-radius-acct-monitor.auth-lbmonitor-radkey
-      radnasip: $paramters.ise-radius-acct-monitor.auth-lbmonitor-nasip
-      radaccounttype: $paramters.ise-radius-acct-monitor.auth-lbmonitor-radaccounttype
-      radframedip: $paramters.ise-radius-auth.acct-lbvserver-ip
-      radmsisdn: $paramters.ise-radius-acct-monitor.auth-lbmonitor-radmsisdn
-      radaccountsession: $paramters.ise-radius-acct-monitor.auth-lbmonitor-radaccountsession        
+      interval: $parameters.ise-radius-acct-monitor.auth-lbmonitor-interval
+      username: $parameters.ise-radius-acct-monitor.auth-lbmonitor-username
+      password: $parameters.ise-radius-acct-monitor.auth-lbmonitor-password
+      radkey: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radkey
+      radnasip: $parameters.ise-radius-acct-monitor.auth-lbmonitor-nasip
+      radaccounttype: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radaccounttype
+      radframedip: $parameters.ise-radius-auth.acct-lbvserver-ip
+      radmsisdn: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radmsisdn
+      radaccountsession: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radaccountsession        
   -   
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
