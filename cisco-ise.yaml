@@ -143,7 +143,7 @@ parameters:
        name: auth-lbmonitor-interval
        label: Monitor Interval
        description: Interval in seconds for how often you want the monitor to fire
-       type: integer
+       type: number
        default: 10
        required: true
      -
