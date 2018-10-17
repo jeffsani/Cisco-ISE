@@ -23,7 +23,7 @@ parameters:
     name: ise-radius-sb
     label: Cisco ISE Radius LB
     description: |
-     <img href="https://en.wikipedia.org/wiki/File:Cisco_logo_blue_2016.svg"><h1> Cisco Identity Services Engine (ISE)</h1>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers in accord with best practices</br>
+     <img src="https://kxiwq67737.i.lithium.com/t5/image/serverpage/image-id/16436i800E8A9DE994DF5E/image-size/large?v=1.0&px=999"><h1> Cisco Identity Services Engine (ISE)</h1>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers in accord with best practices</br>
      fields with an * are required
     type: object
     required: true
