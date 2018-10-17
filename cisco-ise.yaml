@@ -173,7 +173,7 @@ parameters:
        name: auth-lbmonitor-radaccounttype
        label: Account Type
        description: Account Type to be used in Account Request Packet
-       type: string
+       type: number
        default: 1
        required: true
      - 
@@ -191,7 +191,7 @@ components:
     name: ise-auth-monitor-comp
     type: ns::lbmonitor
     description: This component creates an lb monitor for the configured Radius service group 
-    condition: $parameters.ise-radius-monitor
+    condition: $parameters.ise-radius-auth-monitor
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
       type: "RADIUS"
@@ -269,7 +269,7 @@ components:
           - 
             name: ise-lbmonitor-binding-comp
             type: ns::servicegroup_lbmonitor_binding
-            condition: $parameters.ise-radius-monitor
+            condition: $parameters.ise-radius-auth-monitor
             properties:
               servicegroupname: $parent.parent.properties.name
               monitor_name: $components.ise-auth-monitor-comp.properties.monitorname
@@ -321,6 +321,14 @@ components:
              servicegroupname: $parent.properties.servicegroupname
              ip: $server.ip
              port: $server.port
+          - 
+           name: ise-lbmonitor-binding-comp
+           type: ns::servicegroup_lbmonitor_binding
+           condition: $parameters.ise-radius-auth-monitor
+           properties:
+             servicegroupname: $parent.parent.properties.name
+             monitor_name: $components.ise-acct-monitor-comp.properties.monitorname   
+         
 outputs:
   -
     name: ise-auth-lbvserver-comp
@@ -328,7 +336,7 @@ outputs:
   - 
     name: ise-auth-monitor-comp
     value: $components.ise-auth-monitor-comp
-    condition: $parameters.ise-radius-monitor
+    condition: $parameters.ise-radius-auth-monitor
   -
     name: ise-acct-lbvserver-comp
     value: $components.ise-acct-lbvserver-comp
