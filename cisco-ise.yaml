@@ -146,7 +146,8 @@ components:
       radkey: $paramters.ise-radius-monitor.auth-lbmonitor-radkey
       radnasid: $paramters.ise-radius-monitor.auth-lbmonitor-nasid
       radnasip: $paramters.ise-radius-monitor.auth-lbmonitor-nasip
-      interval: $paramters.ise-radius-monitor.auth-lbmonitor-interval   
+      interval: $paramters.ise-radius-monitor.auth-lbmonitor-interval
+      respcode: 2      
   - 
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
