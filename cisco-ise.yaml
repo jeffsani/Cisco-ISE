@@ -3,7 +3,7 @@ name: cisco-ise
 namespace: com.citrix.adc.stylebooks
 version: "1.0"
 display-name: "Cisco ISE"
-description: "This stylebook deploys an LB VServer on Citrix ADC with recommended best practices"
+description: "This stylebook deploys an LB VServer on Citrix ADC for Cisco Identity Services Engine (ISE) as per recommended best practices"
 schema-version: "1.0"
 import-stylebooks: 
   -
