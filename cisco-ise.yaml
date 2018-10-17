@@ -327,7 +327,7 @@ outputs:
     value: $components.ise-auth-lbvserver-comp
   - 
     name: ise-auth-monitor-comp
-    type: $components.ise-auth-monitor-comp
+    value: $components.ise-auth-monitor-comp
     condition: $parameters.ise-radius-monitor
   -
     name: ise-acct-lbvserver-comp
