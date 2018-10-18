@@ -202,7 +202,7 @@ components:
       radkey: $parameters.ise-radius-auth-monitor.auth-lbmonitor-radkey
       radnasid: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasid
       radnasip: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasip
-      #respcode: "2"      
+      respcode: "2"      
   - 
     name: ise-acct-monitor-comp
     type: ns::lbmonitor
