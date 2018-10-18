@@ -21,9 +21,9 @@ import-stylebooks:
 parameters:
   -
     name: ise-radius-sb
-    label: Cisco ISE Radius LB
+    label: Cisco Identity Services Engine (ISE) Radius LB
     description: |
-     <a href="https://community.cisco.com/t5/security-documents/ise-load-balancing/ta-p/3648759" target="_blank"><img src="https://kxiwq67737.i.lithium.com/t5/image/serverpage/image-id/16436i800E8A9DE994DF5E/image-size/large?v=1.0&px=999"></a><h1>Load Balance Cisco Identity Services Engine (ISE)</h1>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers with Citrix ADC in accord with best practices</br>
+     <a href="https://community.cisco.com/t5/security-documents/ise-load-balancing/ta-p/3648759" target="_blank"><img src="https://kxiwq67737.i.lithium.com/t5/image/serverpage/image-id/16436i800E8A9DE994DF5E/image-size/large?v=1.0&px=999"></a><h1Cisco Identity Services Engine (ISE) Radius Server LB</h1>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers with Citrix ADC in accord with best practices</br>
      fields with an * are required
     type: object
     required: true
