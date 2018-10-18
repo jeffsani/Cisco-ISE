@@ -140,50 +140,50 @@ parameters:
     type: object
     parameters:  
      -
-       name: auth-lbmonitor-interval
+       name: acct-lbmonitor-interval
        label: Monitor Interval
        description: Interval in seconds for how often you want the monitor to fire
        type: number
        default: 10
        required: true
      -
-       name: auth-lbmonitor-username
+       name: acct-lbmonitor-username
        label: Radius Username
        description: Service account name to use for the radius monitor
        type: string
        default: ns-probe
        required: true
      -
-       name: auth-lbmonitor-password
+       name: acct-lbmonitor-password
        label: Radius Password
        description: Service account password to use for the radius monitor
        type: password
        required: true
      -
-       name: auth-lbmonitor-radkey
+       name: acct-lbmonitor-radkey
        label: Radius Secret
        description: Radius Key
        type: password
        required: true
      - 
-       name: auth-lbmonitor-nasid
+       name: acct-lbmonitor-nasid
        label: NAS ID
        description: Network Access Server (NAS) Identifier to send in the Access-Request packet
        type: string
      - 
-       name: auth-lbmonitor-radaccounttype
+       name: acct-lbmonitor-radaccounttype
        label: Account Type
        description: Account Type to be used in Account Request Packet
        type: number
        default: 1
        required: true
      - 
-       name: auth-lbmonitor-radmsisdn
+       name: acct-lbmonitor-radmsisdn
        label: Calling Station ID
        description: Calling Stations Id to be used in Account Request Packet
        type: string
      - 
-       name: auth-lbmonitor-radaccountsession
+       name: acct-lbmonitor-radaccountsession
        label: Account Session ID
        description: Account Session ID to be used in Account Request Packet
        type: string
@@ -209,17 +209,17 @@ components:
     description: This component creates an lb monitor for the configured Radius service group 
     condition: $parameters.ise-radius-acct-monitor
     properties:
-      monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
+      monitorname: str("mon_rad_acct") + $parameters.ise-radius-sb.appname
       type: "RADIUS_ACCOUNTING"
-      interval: $parameters.ise-radius-acct-monitor.auth-lbmonitor-interval
-      username: $parameters.ise-radius-acct-monitor.auth-lbmonitor-username
-      password: $parameters.ise-radius-acct-monitor.auth-lbmonitor-password
-      radkey: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radkey
-      radnasip: $parameters.ise-radius-acct-monitor.auth-lbmonitor-nasip
-      radaccounttype: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radaccounttype
-      radframedip: $parameters.ise-radius-auth.acct-lbvserver-ip
-      radmsisdn: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radmsisdn
-      radaccountsession: $parameters.ise-radius-acct-monitor.auth-lbmonitor-radaccountsession        
+      interval: $parameters.ise-radius-acct-monitor.acct-lbmonitor-interval
+      username: $parameters.ise-radius-acct-monitor.acct-lbmonitor-username
+      password: $parameters.ise-radius-acct-monitor.acct-lbmonitor-password
+      radkey: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radkey
+      radnasip: $parameters.ise-radius-acct-monitor.acct-lbmonitor-nasip
+      radaccounttype: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccounttype
+      radframedip: $parameters.ise-radius-acct.acct-lbvserver-ip
+      radmsisdn: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radmsisdn
+      radaccountsession: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccountsession        
   -   
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
