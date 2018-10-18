@@ -201,7 +201,7 @@ components:
       radkey: $parameters.ise-radius-auth-monitor.auth-lbmonitor-radkey
       radnasid: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasid
       radnasip: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasip
-      respcode: str("2")      
+      respcode: "2"      
   - 
     name: ise-acct-monitor-comp
     type: ns::lbmonitor
@@ -209,7 +209,7 @@ components:
     condition: $parameters.ise-radius-acct-monitor
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
-      type: "RADIUS"
+      type: "RADIUS_ACCOUNTING"
       interval: $parameters.ise-radius-acct-monitor.auth-lbmonitor-interval
       username: $parameters.ise-radius-acct-monitor.auth-lbmonitor-username
       password: $parameters.ise-radius-acct-monitor.auth-lbmonitor-password
