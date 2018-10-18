@@ -2,7 +2,7 @@
 name: cisco-ise-radius-lb
 namespace: com.citrix.adc.stylebooks
 version: "1.0"
-display-name: "Cisco ISE"
+display-name: "Cisco ISE Radius LB"
 description: "This stylebook deploys an LB VServer on Citrix ADC for Cisco Identity Services Engine (ISE) as per recommended best practices"
 schema-version: "1.0"
 import-stylebooks: 
