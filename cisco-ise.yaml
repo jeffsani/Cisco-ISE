@@ -171,6 +171,11 @@ parameters:
        description: Network Access Server (NAS) Identifier to send in the Access-Request packet
        type: string
      - 
+       name: acct-lbmonitor-nasip
+       label: NAS IP
+       description: Network Access Server (NAS) IP to send in the Access-Request packet
+       type: ipaddress
+     - 
        name: acct-lbmonitor-radaccounttype
        label: Account Type
        description: Account Type to be used in Account Request Packet
@@ -200,9 +205,9 @@ components:
       username: $parameters.ise-radius-auth-monitor.auth-lbmonitor-username
       password: $parameters.ise-radius-auth-monitor.auth-lbmonitor-password
       radkey: $parameters.ise-radius-auth-monitor.auth-lbmonitor-radkey
-      radnasid: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasid
-      radnasip: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasip
-      respcode: "2"      
+      radnasid?: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasid
+      radnasip?: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasip
+      respcode: ["2"]      
   - 
     name: ise-acct-monitor-comp
     type: ns::lbmonitor
@@ -215,11 +220,12 @@ components:
       username: $parameters.ise-radius-acct-monitor.acct-lbmonitor-username
       password: $parameters.ise-radius-acct-monitor.acct-lbmonitor-password
       radkey: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radkey
-      radnasip: $parameters.ise-radius-acct-monitor.acct-lbmonitor-nasip
+      radnasid?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-nasid
+      radnasip?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-nasip
       radaccounttype: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccounttype
-      radframedip: $parameters.ise-radius-acct.acct-lbvserver-ip
-      radmsisdn: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radmsisdn
-      radaccountsession: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccountsession        
+      radframedip?: $parameters.ise-radius-acct.acct-lbvserver-ip
+      radmsisdn?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radmsisdn
+      radaccountsession?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccountsession        
   -   
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
