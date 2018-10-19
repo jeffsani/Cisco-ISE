@@ -41,7 +41,7 @@ parameters:
     name: ise-radius-auth
     label: Radius Authentication Load Balancing
     description: |
-     Creates an LB Vserver object for Load Balancing ISE Radius Authentication Servers with recommended settings and persistence
+     Creates an LB Vserver object for load balancing Cisco ISE radius authentication servers with recommended settings and persistence
     type: object
     required: true
     parameters:
@@ -68,7 +68,7 @@ parameters:
     name: ise-radius-auth-monitor
     label: Configure Radius Authentication Monitor
     description: |
-     Creates a RADIUS type LB Monitor for ISE Radius authentication servers
+     Creates a RADIUS type load balancing monitor for ISE Radius authentication servers
     type: object
     parameters:  
      -
@@ -110,7 +110,7 @@ parameters:
     name: ise-radius-acct
     label: Configure Radius Accounting Load Balancing
     description: |
-     Creates an LB Vserver object for Load Balancing ISE radius accounting servers with recommended settings and persistence
+     Creates a load balancing VServer object for load balancing Cisco ISE radius accounting servers with recommended settings and persistence
     type: object
     parameters:
      - 
@@ -136,7 +136,7 @@ parameters:
     name: ise-radius-acct-monitor
     label: Configure Radius Accounting Monitor
     description: |
-     Creates a RADIUS_ACCOUNTING type LB Monitor for ISE Radius accounting servers
+     Creates a RADIUS_ACCOUNTING type load balancing monitor for Cisco ISE radius accounting servers
     type: object
     parameters:  
      -
