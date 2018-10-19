@@ -41,7 +41,7 @@ parameters:
     name: ise-radius-auth
     label: Radius Authentication Load Balancing
     description: |
-     Creates an LB Vserver object for load balancing Cisco ISE radius authentication servers with recommended settings and persistence
+     Creates an Vserver object for load balancing Cisco ISE radius authentication servers with recommended settings and persistence
     type: object
     required: true
     parameters:
@@ -64,53 +64,53 @@ parameters:
        description: ISE Radius Authentication Server(s)
        type: cmtypes::server-ip-port-radius-auth-params[]
        required: true
-  -     
-    name: ise-radius-auth-monitor
-    label: Configure Radius Authentication Monitor
-    description: |
-     Creates a RADIUS type load balancing monitor for ISE Radius authentication servers
-    type: object
-    parameters:  
-     -
-       name: auth-lbmonitor-interval
-       label: Monitor Interval
-       description: Interval in seconds for how often you want the monitor to fire
-       type: number
-       default: 10
-       required: true
-     -
-       name: auth-lbmonitor-username
-       label: Radius Username
-       description: Service account name to use for the radius monitor
-       type: string
-       required: true
-     -
-       name: auth-lbmonitor-password
-       label: Radius Password
-       description: Service account password to use for the radius monitor
-       type: password
-       required: true
-     -
-       name: auth-lbmonitor-radkey
-       label: Radius Secret
-       description: Radius Key
-       type: password
-       required: true
-     - 
-       name: auth-lbmonitor-nasid
-       label: NAS ID
-       description: Network Access Server (NAS) Identifier to send in the Access-Request packet
-       type: string
-     - 
-       name: auth-lbmonitor-nasip
-       label: NAS ID
-       description: Network Access Server (NAS) IP address to use as the source IP address when monitoring a RADIUS server
-       type: ipaddress         
+     -     
+       name: ise-radius-auth-monitor
+       label: Configure Radius Authentication Monitor
+       description: |
+        Creates a RADIUS type load balancing monitor for ISE Radius authentication servers
+       type: object
+       parameters:  
+        -
+          name: auth-lbmonitor-interval
+          label: Monitor Interval
+          description: Interval in seconds for how often you want the monitor to fire
+          type: number
+          default: 10
+          required: true
+        -
+          name: auth-lbmonitor-username
+          label: Radius Username
+          description: Service account name to use for the radius monitor
+          type: string
+          required: true
+        -
+          name: auth-lbmonitor-password
+          label: Radius Password
+          description: Service account password to use for the radius monitor
+          type: password
+          required: true
+        -
+          name: auth-lbmonitor-radkey
+          label: Radius Secret
+          description: Radius Key
+          type: password
+          required: true
+        - 
+          name: auth-lbmonitor-nasid
+          label: NAS ID
+          description: Network Access Server (NAS) Identifier to send in the Access-Request packet
+          type: string
+        - 
+          name: auth-lbmonitor-nasip
+          label: NAS ID
+          description: Network Access Server (NAS) IP address to use as the source IP address when monitoring a RADIUS server
+          type: ipaddress         
   -   
     name: ise-radius-acct
     label: Configure Radius Accounting Load Balancing
     description: |
-     Creates a load balancing VServer object for load balancing Cisco ISE radius accounting servers with recommended settings and persistence
+     Creates a VServer object for load balancing Cisco ISE radius accounting servers with recommended settings and persistence
     type: object
     parameters:
      - 
@@ -132,100 +132,100 @@ parameters:
        description: ISE Radius Accounting Server(s)
        type: cmtypes::server-ip-port-radius-acct-params[]
        required: true
-  -     
-    name: ise-radius-acct-monitor
-    label: Configure Radius Accounting Monitor
-    description: |
-     Creates a RADIUS_ACCOUNTING type load balancing monitor for Cisco ISE radius accounting servers
-    type: object
-    parameters:  
-     -
-       name: acct-lbmonitor-interval
-       label: Monitor Interval
-       description: Interval in seconds for how often you want the monitor to fire
-       type: number
-       default: 10
-       required: true
-     -
-       name: acct-lbmonitor-username
-       label: Radius Username
-       description: Service account name to use for the radius monitor
-       type: string
-       default: ns-probe
-       required: true
-     -
-       name: acct-lbmonitor-password
-       label: Radius Password
-       description: Service account password to use for the radius monitor
-       type: password
-       required: true
-     -
-       name: acct-lbmonitor-radkey
-       label: Radius Secret
-       description: Radius Key
-       type: password
-       required: true
-     - 
-       name: acct-lbmonitor-nasid
-       label: NAS ID
-       description: Network Access Server (NAS) Identifier to send in the Access-Request packet
-       type: string
-     - 
-       name: acct-lbmonitor-nasip
-       label: NAS IP
-       description: Network Access Server (NAS) IP to send in the Access-Request packet
-       type: ipaddress
-     - 
-       name: acct-lbmonitor-radaccounttype
-       label: Account Type
-       description: Account Type to be used in Account Request Packet
-       type: number
-       default: 1
-       required: true
-     - 
-       name: acct-lbmonitor-radmsisdn
-       label: Calling Station ID
-       description: Calling Stations Id to be used in Account Request Packet
-       type: string
-     - 
-       name: acct-lbmonitor-radaccountsession
-       label: Account Session ID
-       description: Account Session ID to be used in Account Request Packet
-       type: string
+     -     
+       name: ise-radius-acct-monitor
+       label: Configure Radius Accounting Monitor
+       description: |
+        Creates a RADIUS_ACCOUNTING type load balancing monitor for Cisco ISE radius accounting servers
+       type: object
+       parameters:  
+        -
+          name: acct-lbmonitor-interval
+          label: Monitor Interval
+          description: Interval in seconds for how often you want the monitor to fire
+          type: number
+          default: 10
+          required: true
+        -
+          name: acct-lbmonitor-username
+          label: Radius Username
+          description: Service account name to use for the radius monitor
+          type: string
+          default: ns-probe
+          required: true
+        -
+          name: acct-lbmonitor-password
+          label: Radius Password
+          description: Service account password to use for the radius monitor
+          type: password
+          required: true
+        -
+          name: acct-lbmonitor-radkey
+          label: Radius Secret
+          description: Radius Key
+          type: password
+          required: true
+        - 
+          name: acct-lbmonitor-nasid
+          label: NAS ID
+          description: Network Access Server (NAS) Identifier to send in the Access-Request packet
+          type: string
+        - 
+          name: acct-lbmonitor-nasip
+          label: NAS IP
+          description: Network Access Server (NAS) IP to send in the Access-Request packet
+          type: ipaddress
+        - 
+          name: acct-lbmonitor-radaccounttype
+          label: Account Type
+          description: Account Type to be used in Account Request Packet
+          type: number
+          default: 1
+          required: true
+        - 
+          name: acct-lbmonitor-radmsisdn
+          label: Calling Station ID
+          description: Calling Stations Id to be used in Account Request Packet
+          type: string
+        - 
+          name: acct-lbmonitor-radaccountsession
+          label: Account Session ID
+          description: Account Session ID to be used in Account Request Packet
+          type: string
 components:
   - 
     name: ise-auth-monitor-comp
     type: ns::lbmonitor
     description: This component creates an lb monitor for the configured Radius service group 
-    condition: $parameters.ise-radius-auth-monitor
+    condition: $parameters.ise-radius-acct.ise-radius-auth-monitor
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
       type: "RADIUS"
-      interval: $parameters.ise-radius-auth-monitor.auth-lbmonitor-interval
-      username: $parameters.ise-radius-auth-monitor.auth-lbmonitor-username
-      password: $parameters.ise-radius-auth-monitor.auth-lbmonitor-password
-      radkey: $parameters.ise-radius-auth-monitor.auth-lbmonitor-radkey
-      radnasid?: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasid
-      radnasip?: $parameters.ise-radius-auth-monitor.auth-lbmonitor-nasip
+      interval: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-interval
+      username: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-username
+      password: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-password
+      radkey: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-radkey
+      radnasid?: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-nasid
+      radnasip?: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-nasip
       respcode: [str(2)]      
   - 
     name: ise-acct-monitor-comp
     type: ns::lbmonitor
     description: This component creates an lb monitor for the configured Radius service group 
-    condition: $parameters.ise-radius-acct-monitor
+    condition: $parameters.ise-radius-acct.ise-radius-acct-monitor
     properties:
       monitorname: str("mon_rad_acct") + $parameters.ise-radius-sb.appname
       type: "RADIUS_ACCOUNTING"
-      interval: $parameters.ise-radius-acct-monitor.acct-lbmonitor-interval
-      username: $parameters.ise-radius-acct-monitor.acct-lbmonitor-username
-      password: $parameters.ise-radius-acct-monitor.acct-lbmonitor-password
-      radkey: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radkey
-      radnasid?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-nasid
-      radnasip?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-nasip
-      radaccounttype: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccounttype
+      interval: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-interval
+      username: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-username
+      password: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-password
+      radkey: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-radkey
+      radnasid?: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-nasid
+      radnasip?: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-nasip
+      radaccounttype: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-radaccounttype
       radframedip?: $parameters.ise-radius-acct.acct-lbvserver-ip
-      radmsisdn?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radmsisdn
-      radaccountsession?: $parameters.ise-radius-acct-monitor.acct-lbmonitor-radaccountsession        
+      radmsisdn?: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-radmsisdn
+      radaccountsession?: $parameters.ise-radius-acct.ise-radius-acct-monitor.acct-lbmonitor-radaccountsession        
   -   
     name: ise-auth-lbvserver-comp
     type: ns::lbvserver
@@ -276,7 +276,7 @@ components:
           - 
             name: ise-lbmonitor-binding-comp
             type: ns::servicegroup_lbmonitor_binding
-            condition: $parameters.ise-radius-auth-monitor
+            condition: $parameters.ise-radius-acct.ise-radius-auth-monitor
             properties:
               servicegroupname: $parent.parent.properties.name
               monitor_name: $components.ise-auth-monitor-comp.properties.monitorname
@@ -331,7 +331,7 @@ components:
           - 
            name: ise-lbmonitor-binding-comp
            type: ns::servicegroup_lbmonitor_binding
-           condition: $parameters.ise-radius-auth-monitor
+           condition: $parameters.ise-radius-acct.ise-radius-acct-monitor
            properties:
              servicegroupname: $parent.parent.properties.name
              monitor_name: $components.ise-acct-monitor-comp.properties.monitorname   
@@ -343,11 +343,11 @@ outputs:
   - 
     name: ise-auth-monitor-comp
     value: $components.ise-auth-monitor-comp
-    condition: $parameters.ise-radius-auth-monitor
+    condition: $parameters.ise-radius-acct.ise-radius-auth-monitor
   -
     name: ise-acct-lbvserver-comp
     value: $components.ise-acct-lbvserver-comp
   -
     name: ise-acct-monitor-comp
     value: $components.ise-acct-monitor-comp
-    condition: $parameters.ise-radius-acct-monitor
+    condition: $parameters.ise-radius-acct.ise-radius-acct-monitor
