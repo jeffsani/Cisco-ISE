@@ -83,6 +83,7 @@ parameters:
           label: Radius Username
           description: Service account name to use for the radius monitor
           type: string
+          default: ns-probe
           required: true
         -
           name: auth-lbmonitor-password
