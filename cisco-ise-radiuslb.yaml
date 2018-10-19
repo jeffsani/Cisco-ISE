@@ -276,7 +276,7 @@ components:
           - 
             name: ise-lbmonitor-binding-comp
             type: ns::servicegroup_lbmonitor_binding
-            condition: $parameters.ise-radius-acct.ise-radius-auth-monitor
+            condition: $parameters.ise-radius-auth.ise-radius-auth-monitor
             properties:
               servicegroupname: $parent.parent.properties.name
               monitor_name: $components.ise-auth-monitor-comp.properties.monitorname
