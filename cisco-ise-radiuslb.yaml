@@ -197,16 +197,16 @@ components:
     name: ise-auth-monitor-comp
     type: ns::lbmonitor
     description: This component creates an lb monitor for the configured Radius service group 
-    condition: $parameters.ise-radius-acct.ise-radius-auth-monitor
+    condition: $parameters.ise-radius-auth.ise-radius-auth-monitor
     properties:
       monitorname: str("mon_rad_auth") + $parameters.ise-radius-sb.appname
       type: "RADIUS"
-      interval: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-interval
-      username: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-username
-      password: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-password
-      radkey: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-radkey
-      radnasid?: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-nasid
-      radnasip?: $parameters.ise-radius-acct.ise-radius-auth-monitor.auth-lbmonitor-nasip
+      interval: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-interval
+      username: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-username
+      password: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-password
+      radkey: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-radkey
+      radnasid?: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-nasid
+      radnasip?: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-nasip
       respcode: [str(2)]      
   - 
     name: ise-acct-monitor-comp
@@ -343,7 +343,7 @@ outputs:
   - 
     name: ise-auth-monitor-comp
     value: $components.ise-auth-monitor-comp
-    condition: $parameters.ise-radius-acct.ise-radius-auth-monitor
+    condition: $parameters.ise-radius-auth.ise-radius-auth-monitor
   -
     name: ise-acct-lbvserver-comp
     value: $components.ise-acct-lbvserver-comp
