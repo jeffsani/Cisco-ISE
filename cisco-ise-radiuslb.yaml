@@ -39,7 +39,7 @@ parameters:
        required: true
   - 
     name: ise-radius-auth
-    label: ISE Radius Authentication Server(s)
+    label: Radius Authentication Load Balancing
     description: |
      Creates an LB Vserver object for Load Balancing ISE Radius Authentication Servers with recommended settings and persistence
     type: object
@@ -66,7 +66,7 @@ parameters:
        required: true
   -     
     name: ise-radius-auth-monitor
-    label: Configure Radius Authentication Monitor (Click to Enable)
+    label: Configure Radius Authentication Monitor
     description: |
      Creates a RADIUS type LB Monitor for ISE Radius authentication servers
     type: object
@@ -108,7 +108,7 @@ parameters:
        type: ipaddress         
   -   
     name: ise-radius-acct
-    label: ISE Radius Accounting (Click to Enable)
+    label: Configure Radius Accounting Load Balancing
     description: |
      Creates an LB Vserver object for Load Balancing ISE radius accounting servers with recommended settings and persistence
     type: object
@@ -134,7 +134,7 @@ parameters:
        required: true
   -     
     name: ise-radius-acct-monitor
-    label: Configure Radius Accounting Monitor (Click to Enable)
+    label: Configure Radius Accounting Monitor
     description: |
      Creates a RADIUS_ACCOUNTING type LB Monitor for ISE Radius accounting servers
     type: object
