@@ -52,7 +52,7 @@ parameters:
        type: object
        parameters:
         - 
-          nodeprefix: auth-secret-validation-nodeprefix
+          name: auth-secret-validation-nodeprefix
           label: Node Prefix
           description: IP address/IP prefix of radius node in CIDR format. A subnet of 0.0.0.0/0 implies that it is the default shared secret for all clients and servers
           type: "cmtypes::ip-radius-secret-params[]"
