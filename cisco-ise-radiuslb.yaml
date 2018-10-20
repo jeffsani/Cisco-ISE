@@ -9,7 +9,7 @@ import-stylebooks:
   -
     namespace: netscaler.nitro.config
     prefix: ns
-    version: "11.1"
+    version: "12.0"
   -
     namespace: com.citrix.adc.commontypes
     prefix: cmtypes
@@ -37,6 +37,26 @@ parameters:
        gui:
         updatable: true
        required: true
+     - 
+       name: ise-radius-auth-secret-validation
+       label: Configure client<->server secret validation
+       description: |
+        From release 12.0 onward, Citrix ADC supports RADIUS shared secret validation. A RADIUS client and server communicate with each other by using a shared secret that is configured on the client and on the server. Transactions between a RADIUS client and server are authenticated through the use of a shared secret. This secret is also used to encrypt some of the information in the RADIUS packet.<br> 
+        <h2>The validation of the RADIUS shared secret key happens in the following scenarios:<h2>
+        <ul>
+        <li><strong>RADIUS shared secret key is configured for both the radius client and the radius server:</strong> The NetScaler appliance uses the RADIUS secret key for both the client side and the server side. If the verification succeeds, the appliance allows the RADIUS message to go through. Otherwise, it drops the RADIUS message.</li>
+        <li><strong>RADIUS shared secret key is not configured for either the radius client or the radius server:</strong> The NetScaler appliance drops the RADIUS message, because shared-secret-key validation cannot be performed on a node that has no radkey configured.</li>
+        <li><strong>RADIUS shared secret key is not configured for both the RADIUS client and the RADIUS server:</strong> The NetScaler appliance bypasses the RADIUS secret key validation and allows the RADIUS messages to go through.</li>
+        </ul><br>
+        You can configure a default RADIUS shared secret or configure on a per client or a subnet basis. It is recommended to add a RADIUS shared secret key for all deployments with RADIUS policy configured. The appliance uses the source IP address of the RADIUS packet to decide which shared secret to use. Click <a href=""https://docs.citrix.com/en-us/netscaler/12/load-balancing/load-balancing-persistence/radius-persistence.html" target="_blank"> here for more inforamtion</a><br>
+       type: object
+       parameters:
+        - 
+          nodeprefix: auth-secret-validation-nodeprefix
+          label: Node Prefix
+          description: IP address/IP prefix of radius node in CIDR format. A subnet of 0.0.0.0/0 implies that it is the default shared secret for all clients and servers
+          type: "cmtypes::ip-radius-secret-params[]"
+          required: true   
   - 
     name: ise-radius-auth
     label: Radius Authentication Load Balancing
@@ -194,6 +214,22 @@ parameters:
           description: Account Session ID to be used in Account Request Packet
           type: string
 components:
+  - 
+    name: ise-radius-auth-secret-validation-comp
+    type: ns::basic
+    description: This component creates node secret validation for client and server based on input client-server networks
+    condition: $parameters.ise-radius-auth-secret-validation
+    components: 
+     -
+       name: ise-radius-auth-secret-node
+       type: ns::radiusnode
+       condition: $parameters.ise-radius-auth-secret-validation
+       repeat:
+          repeat-list: $parameters.ise-radius-auth-secret-validation.auth-secret-validation-nodeprefix
+          repeat-index: radnode
+       properties:
+         nodeprefix: $radnode.network
+         radkey: $radnode.secret  
   - 
     name: ise-auth-monitor-comp
     type: ns::lbmonitor
