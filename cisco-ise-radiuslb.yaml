@@ -364,8 +364,7 @@ components:
            condition: $parameters.ise-radius-acct.ise-radius-acct-monitor
            properties:
              servicegroupname: $parent.parent.properties.name
-             monitor_name: $components.ise-acct-monitor-comp.properties.monitorname   
-         
+             monitor_name: $components.ise-acct-monitor-comp.properties.monitorname      
 outputs:
   -
     name: ise-auth-lbvserver-comp
