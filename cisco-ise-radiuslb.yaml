@@ -52,8 +52,8 @@ parameters:
        type: object
        parameters:
         - 
-          name: auth-secret-validation-nodeprefix
-          label: Node Prefix
+          name: nodeprefix
+          label: Node Prefix - Secret Mapping
           description: IP address/IP prefix of radius node in CIDR format. A subnet of 0.0.0.0/0 implies that it is the default shared secret for all clients and servers
           type: "cmtypes::ip-radius-secret-params[]"
           required: true   
@@ -218,7 +218,7 @@ components:
     name: ise-radius-auth-secret-node
     type: ns::radiusnode
     repeat:
-     repeat-list: $parameters.ise-radius-auth-secret-validation.auth-secret-validation-nodeprefix
+     repeat-list: $parameters.ise-radius-auth-secret-validation.nodeprefix
      repeat-index: radnode
     properties:
       nodeprefix: $radnode.network
