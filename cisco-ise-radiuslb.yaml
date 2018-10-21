@@ -215,21 +215,14 @@ parameters:
           type: string
 components:
   - 
-    name: ise-radius-auth-secret-validation-comp
-    type: ns::basic
-    description: This component creates node secret validation for client and server based on input client-server networks
-    condition: $parameters.ise-radius-auth-secret-validation
-    components: 
-     -
-       name: ise-radius-auth-secret-node
-       type: ns::radiusnode
-       condition: $parameters.ise-radius-auth-secret-validation
-       repeat:
-          repeat-list: $parameters.ise-radius-auth-secret-validation.auth-secret-validation-nodeprefix
-          repeat-index: radnode
-       properties:
-         nodeprefix: $radnode.network
-         radkey: $radnode.secret  
+    name: ise-radius-auth-secret-node
+    type: ns::radiusnode
+    repeat:
+     repeat-list: $parameters.ise-radius-auth-secret-validation.auth-secret-validation-nodeprefix
+     repeat-index: radnode
+    properties:
+      nodeprefix: $radnode.network
+      radkey: $radnode.secret  
   - 
     name: ise-auth-monitor-comp
     type: ns::lbmonitor
