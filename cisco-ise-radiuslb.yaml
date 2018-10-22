@@ -39,10 +39,10 @@ parameters:
        required: true
      - 
        name: ise-radius-auth-secret-validation
-       label: Configure client<->server secret validation
+       label: Configure client<->server radius secret validation
        description: |
-        From release 12.0 onward, Citrix ADC supports RADIUS shared secret validation. A RADIUS client and server communicate with each other by using a shared secret that is configured on the client and on the server. Transactions between a RADIUS client and server are authenticated through the use of a shared secret. This secret is also used to encrypt some of the information in the RADIUS packet.<br> 
-        <h2>The validation of the RADIUS shared secret key happens in the following scenarios:<h2>
+        <h2>Radius Shared Secret Validation</h2>From release 12.0 onward, Citrix ADC supports RADIUS shared secret validation. A RADIUS client and server communicate with each other by using a shared secret that is configured on the client and on the server. Transactions between a RADIUS client and server are authenticated through the use of a shared secret. This secret is also used to encrypt some of the information in the RADIUS packet.<br> 
+        <strong>The validation of the RADIUS shared secret key happens in the following scenarios:</strong>
         <ul>
         <li><strong>RADIUS shared secret key is configured for both the radius client and the radius server:</strong> The NetScaler appliance uses the RADIUS secret key for both the client side and the server side. If the verification succeeds, the appliance allows the RADIUS message to go through. Otherwise, it drops the RADIUS message.</li>
         <li><strong>RADIUS shared secret key is not configured for either the radius client or the radius server:</strong> The NetScaler appliance drops the RADIUS message, because shared-secret-key validation cannot be performed on a node that has no radkey configured.</li>
