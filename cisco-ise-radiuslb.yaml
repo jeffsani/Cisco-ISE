@@ -48,7 +48,7 @@ parameters:
         <li><strong>RADIUS shared secret key is not configured for either the radius client or the radius server:</strong> The NetScaler appliance drops the RADIUS message, because shared-secret-key validation cannot be performed on a node that has no radkey configured.</li>
         <li><strong>RADIUS shared secret key is not configured for both the RADIUS client and the RADIUS server:</strong> The NetScaler appliance bypasses the RADIUS secret key validation and allows the RADIUS messages to go through.</li>
         </ul><br>
-        You can configure a default RADIUS shared secret or configure on a per client or a subnet basis. It is recommended to add a RADIUS shared secret key for all deployments with RADIUS policy configured. The appliance uses the source IP address of the RADIUS packet to decide which shared secret to use. Click <a href=""https://docs.citrix.com/en-us/netscaler/12/load-balancing/load-balancing-persistence/radius-persistence.html" target="_blank"> here for more inforamtion</a><br>
+        You can configure a default RADIUS shared secret or configure on a per client or a subnet basis. It is recommended to add a RADIUS shared secret key for all deployments with RADIUS policy configured. The appliance uses the source IP address of the RADIUS packet to decide which shared secret to use. Click <a href=""https://docs.citrix.com/en-us/netscaler/12/load-balancing/load-balancing-persistence/radius-persistence.html" target="_blank"> here for more inforamtion</a>
        type: object
        parameters:
         - 
