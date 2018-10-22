@@ -30,7 +30,7 @@ parameters:
     parameters:
      - 
        name: appname
-       label: ISE Applicaiton Name
+       label: ISE Application Name
        description: Prefix for created entities
        type: string
        key: true
@@ -212,16 +212,16 @@ parameters:
           name: acct-lbmonitor-radaccountsession
           label: Account Session ID
           description: Account Session ID to be used in Account Request Packet
-          type: string
+          type: string 
 components:
   - 
     name: ise-radius-auth-secret-node
     type: ns::radiusnode
     repeat:
-     repeat-list: $parameters.ise-radius-auth-secret-validation.nodeprefix
-     repeat-index: radnode
+     repeat-list: $parameters.ise-radius-sb.ise-radius-auth-secret-validation.nodeprefix
+     repeat-item: radnode
     properties:
-      nodeprefix: $radnode.network
+      nodeprefix: ip($radnode.network)
       radkey: $radnode.secret  
   - 
     name: ise-auth-monitor-comp
@@ -237,7 +237,7 @@ components:
       radkey: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-radkey
       radnasid?: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-nasid
       radnasip?: $parameters.ise-radius-auth.ise-radius-auth-monitor.auth-lbmonitor-nasip
-      respcode: [str(2)]      
+      respcode: [str(2)]
   - 
     name: ise-acct-monitor-comp
     type: ns::lbmonitor
