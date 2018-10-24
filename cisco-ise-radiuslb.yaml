@@ -216,11 +216,12 @@ parameters:
 components:
   -
     name: ise-enable-ns-features
-    type: ns:nsfeature
-    description: This component enables the required features needed for the entities in this StyleBook
-    properties:
-      feature: lb
+    type: ns::nsfeature
+    description: This component enables the required Citrix ADC features needed for the entities in this StyleBook
+    meta-properties:
       action: enable
+    properties:
+        feature: ["lb"]
   - 
     name: ise-radius-auth-secret-node
     type: ns::radiusnode
