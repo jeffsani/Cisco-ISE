@@ -32,6 +32,9 @@ parameters:
         <th>Acronym</th>
         <th>Description</th>
      </tr>
+     <colgroup>
+        <col span="3" style="border: 1px solid black;">
+     </colgroup>
      <tr>
         <td>Policy Administration Node</td>
         <td>PAN</td>
