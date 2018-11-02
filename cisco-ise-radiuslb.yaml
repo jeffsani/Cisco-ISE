@@ -25,8 +25,8 @@ parameters:
     description: |
      <a href="https://community.cisco.com/t5/security-documents/ise-load-balancing/ta-p/3648759" target="_blank"><img src="https://kxiwq67737.i.lithium.com/t5/image/serverpage/image-id/16436i800E8A9DE994DF5E/image-size/large?v=1.0&px=999"></a><h1>Cisco Identity Services Engine (ISE) Radius Server LB</h1>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers with Citrix ADC in accord with best practices</br>
      fields with an * are required</br>
-     <table style="width:100%;border-spacing: 1px;">
-     <caption>Legend</caption>
+     <table style="width:50%;border-spacing: 1px;border: 1px solid black;">
+     <caption>Node Legend</caption>
      <tr style="color: white;background-color: black;">
         <th>Server</th>
         <th>Acronym</th>
@@ -36,6 +36,26 @@ parameters:
         <td>Policy Administration Node</td>
         <td>PAN</td>
         <td>Interface to configure policies</td>
+     </tr>
+     <tr>
+        <td>Policy Services Node</td>
+        <td>PSN</td>
+        <td>Policy Engine</td>
+     </tr>
+     <tr>
+        <td>In-line Posture Node</td>
+        <td>IPN</td>
+        <td>Interface that queries Policy Service node and enforces policy</td>
+     </tr>
+     <tr>
+        <td>Monitoring Node</td>
+        <td>MnT</td>
+        <td>Interface for logging and report data</td>
+     </tr>
+     <tr>
+        <td>External Attribute Store</td>
+        <td>EAS</td>
+        <td>Interface to retrieve policy or policy information</td>
      </tr>
      </table>
     type: object
