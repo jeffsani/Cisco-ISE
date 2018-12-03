@@ -23,9 +23,9 @@ parameters:
     name: ise-radius-sb
     label: Cisco Identity Services Engine (ISE) Radius LB
     description: |
-     <h1>Cisco Identity Services Engine (ISE) Radius Server LB</h1><a href="https://community.cisco.com/t5/security-documents/ise-load-balancing/ta-p/3648759" target="_blank"><img src="https://kxiwq67737.i.lithium.com/t5/image/serverpage/image-id/16436i800E8A9DE994DF5E/image-size/large?v=1.0&px=999"></a>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers with Citrix ADC in accord with best practices</br>
+     <h1>Cisco Identity Services Engine (ISE) Radius Server LB</h1><a href="https://community.cisco.com/t5/security-documents/ise-load-balancing/ta-p/3648759" target="_blank"><table width=60"><tr><td<img src="https://kxiwq67737.i.lithium.com/t5/image/serverpage/image-id/16436i800E8A9DE994DF5E/image-size/large?v=1.0&px=999"></a></td><td>This StyleBook creates the required entities for Load Balancing Cisco ISE Radius servers with Citrix ADC in accord with best practices</td></tr></table>
      fields with an * are required</br>
-     <table style="width:50%;border-spacing: 1px;border: 1px solid black;">
+     <table style="width:60%;border-spacing: 1px;border: 1px solid black;">
      <caption>Node Legend</caption>
      <tr style="color: white;background-color: black;">
         <th>Server</th>
